@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trappers/models/network_error.dart';
+import 'package:trappers/models/failure.dart';
 import 'package:trappers/models/trapper.dart';
 import 'package:trappers/screens/trapper_list.dart';
+import 'package:trappers/services/http_trapi.dart';
 import 'package:trappers/services/trapi.dart';
 
 void main() {
@@ -11,7 +12,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final Trapi trapi = Trapi();
+  final Trapi trapi = HttpTrapi();
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,6 @@ class MyApp extends StatelessWidget {
       ),
       home: FutureProvider<Either<Failure, List<Trapper>>>(
         create: (context) => trapi.getTrappers(),
-        // catchError: (context, error) {
-        //   print(error.toString());
-        //   return null;
-        // },
         child: TrapperList(),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:trappers/models/network_error.dart';
+import 'package:trappers/models/failure.dart';
 import 'package:trappers/models/trapper.dart';
 
 class TrapperList extends StatelessWidget {
@@ -15,10 +15,11 @@ class TrapperList extends StatelessWidget {
           title: Text('Trappers'),
         ),
         body: trappers == null
-            ? Center(child: CircularProgressIndicator())
+            ? Center(child: CircularProgressIndicator()) // Loading
             : trappers.fold(
-                (failure) => Center(child: Text(failure.message)),
+                (failure) => Center(child: Text(failure.message)), // Error
                 (trappers) => ListView.builder(
+                    // Data fetched
                     itemCount: trappers.length,
                     itemBuilder: (context, index) => ListTile(
                           title: Text(trappers[index].name),
