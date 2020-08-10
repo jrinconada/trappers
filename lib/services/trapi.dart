@@ -5,8 +5,8 @@ import 'package:trappers/models/trapper.dart';
 
 /// Manages network connections with the API
 class Trapi {
-  static final String baseURL = 'https://private-ff2081-trapi1.apiary-mock.com/';
-  static final String getTrappersEndpoint = baseURL + 'trappers';
+  static const String baseURL = 'https://private-ff2081-trapi1.apiary-mock.com/';
+  static const String getTrappersEndpoint = baseURL + 'trappers';
 
   /// Requests a list of trappers to the server
   Future<List<Trapper>> getTrappers() async {
