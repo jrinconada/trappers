@@ -1,5 +1,7 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:trappers/models/network_error.dart';
 import 'package:trappers/models/trapper.dart';
 import 'package:trappers/screens/trapper_list.dart';
 import 'package:trappers/services/trapi.dart';
@@ -19,9 +21,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: FutureProvider<List<Trapper>>(        
+      home: FutureProvider<Either<Failure, List<Trapper>>>(
         create: (context) => trapi.getTrappers(),
-        // catchError: (context, error) => print(error.toString()),
+        // catchError: (context, error) {
+        //   print(error.toString());
+        //   return null;
+        // },
         child: TrapperList(),
       ),
     );
