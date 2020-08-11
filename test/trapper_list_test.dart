@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:trappers/models/failure.dart';
 import 'package:trappers/models/trapper.dart';
 import 'package:trappers/screens/trapper_list.dart';
+import 'package:trappers/services/http_trapi.dart';
 
 import 'package:trappers/services/trapi.dart';
 
@@ -27,19 +28,21 @@ Widget makeTestable({Widget child, Trapi trapi}) {
 
 void main() {
   group('Trapper List', () {
-    MockTrapi trapi;
+    MockTrapi mockTrapi;
+    Trapi httpTrapi;
     setUpAll(() {
-      trapi = MockTrapi();
+      httpTrapi = HttpTrapi();
+      mockTrapi = MockTrapi();
     });
 
     testWidgets('All trappers information is displayed in a list',
         (WidgetTester tester) async {
       // Prepare fake data
-      trapi.delay = true;
-      List<Trapper> trappers = trapi.prepareTrappers();
+      mockTrapi.delay = true;
+      List<Trapper> trappers = mockTrapi.prepareTrappers();
 
       // Build the screen and call API
-      await tester.pumpWidget(makeTestable(child: TrapperList(), trapi: trapi));
+      await tester.pumpWidget(makeTestable(child: TrapperList(), trapi: mockTrapi));
       await tester.pumpAndSettle(); // Wait for it load
 
       // Find information on the screen
@@ -52,11 +55,11 @@ void main() {
     testWidgets('On network failure an error is displayed',
         (WidgetTester tester) async {
       // Prepare fake API      
-      trapi.delay = true;
-      trapi.error = true;
+      mockTrapi.delay = true;
+      mockTrapi.error = true;
 
       // Build the screen and call API
-      await tester.pumpWidget(makeTestable(child: TrapperList(), trapi: trapi));
+      await tester.pumpWidget(makeTestable(child: TrapperList(), trapi: mockTrapi));
       await tester.pumpAndSettle(); // Wait for it load
 
       // Find information on the screen
