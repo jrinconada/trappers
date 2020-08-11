@@ -22,19 +22,22 @@ class TrapperItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading:  CachedNetworkImage(
-        width: 60,
-        height: 60,        
-        fit: BoxFit.cover,
-        imageUrl: _trapper.pic,
-        placeholder: (context, url) => CircularProgressIndicator(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
-      ),
-      // leading: Image.network(_trapper.pic),
-      // leading: _downloadImage(_trapper.pic),
-      title: Text(_trapper.name),
-      subtitle: Text(_trapper.genre),
-    );
+    return Hero(
+        tag: _trapper,
+        child: Material(
+            child: ListTile(
+          leading: CachedNetworkImage(
+            width: 60,
+            height: 60,
+            fit: BoxFit.cover,
+            imageUrl: _trapper.pic,
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
+          // leading: Image.network(_trapper.pic),
+          // leading: _downloadImage(_trapper.pic),
+          title: Text(_trapper.name),
+          subtitle: Text(_trapper.genre),
+        )));
   }
 }

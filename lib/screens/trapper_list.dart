@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trappers/models/failure.dart';
 import 'package:trappers/models/trapper.dart';
+import 'package:trappers/screens/trapper_detail.dart';
 import 'package:trappers/views/trapper_item.dart';
 
 class TrapperList extends StatelessWidget {
+  _toDetail(BuildContext context, Trapper trapper) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => TrapperDetail(trapper)));
+  }
+
   @override
   Widget build(BuildContext context) {
     Either<Failure, List<Trapper>> trappers =
@@ -22,7 +28,9 @@ class TrapperList extends StatelessWidget {
                 (trappers) => ListView.builder(
                     // Data fetched
                     itemCount: trappers.length,
-                    itemBuilder: (context, index) =>
-                        TrapperItem(trappers[index]))));
+                    itemBuilder: (context, index) => GestureDetector(
+                          onTap: () => _toDetail(context, trappers[index]),
+                          child: TrapperItem(trappers[index]),
+                        ))));
   }
 }
