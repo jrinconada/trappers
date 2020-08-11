@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trappers/models/failure.dart';
 import 'package:trappers/models/trapper.dart';
+import 'package:trappers/views/trapper_item.dart';
 
 class TrapperList extends StatelessWidget {
   @override
@@ -21,9 +22,7 @@ class TrapperList extends StatelessWidget {
                 (trappers) => ListView.builder(
                     // Data fetched
                     itemCount: trappers.length,
-                    itemBuilder: (context, index) => ListTile(
-                          title: Text(trappers[index].name),
-                          subtitle: Text(trappers[index].genre),
-                        ))));
+                    itemBuilder: (context, index) =>
+                        TrapperItem(trappers[index]))));
   }
 }
