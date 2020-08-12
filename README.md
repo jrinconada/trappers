@@ -1,16 +1,8 @@
-# trappers
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Trappers
+A sample Flutter project to illustrate
+- Display a list if downloaded items
+- API Request and JSON parsing with **http**
+- Image download and chaching with **cached_network_image**
+- Error handling **Either** with **dartz**
+- Dependency injection with **provider**
+- Testing with API mock
