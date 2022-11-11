@@ -9,7 +9,7 @@ class MockTrapi implements Trapi {
   bool delay = false;
 
   List<Trapper> prepareTrappers() {
-    List<Trapper> trappers = new List();
+    List<Trapper> trappers = [];
     var info = {
       "name": "Rosalia",
       "genre": "Trap flamenco",
